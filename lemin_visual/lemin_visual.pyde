@@ -21,34 +21,36 @@ def take_input():
             # print input[i]
             input_arr[j] = room(input[i][0], input[i][1], input[i][2], z, True, False)
             print input_arr[j].name, input_arr[j].x, input_arr[j].y, input_arr[j].z, input_arr[j].s, input_arr[j].e 
+            room.num_rooms += 1
             next(myiter, None)
         elif "##end" in input[i]:
             i += 1
             # print input[i]
             input_arr[j] = room(input[i][0], input[i][1], input[i][2], z, False, True)
             print input_arr[j].name, input_arr[j].x, input_arr[j].y, input_arr[j].z, input_arr[j].s, input_arr[j].e 
+            room.num_rooms += 1
             next(myiter, None)
         elif "#" in input[0]:
             next(myiter, None)
         elif "-" in str(input[i]) and "L" not in str(input[i]):
             link = str(input[i]).split('-')
-            print "k =", k
-            print "name =", input_arr[k].name
-            for k in range(input_arr[i]):
-                print "name = ", input_arr[k].name
-            # print link
-            # print link[0][2]
-            k += 1
+            k = 0
+            for input_arr[k].name in range(room.num_rooms):
+                # print "input_arr[k] = ", input_arr[k]
+                if str(input_arr[k].name) == str(link[0][2]):
+                    input_arr[k].
+                    print "name = ", input_arr[k].name, "k = ", k
+                k += 1
         elif "L" in str(input[i]):
             print input[i]
         elif not input[i]:
             pass
         else:
             input_arr[j] = room(input[i][0], input[i][1], input[i][2], z, False, False)
-            print input_arr[j].name, input_arr[j].x, input_arr[j].y, input_arr[j].z, input_arr[j].s, input_arr[j].e 
+            print input_arr[j].name, input_arr[j].x, input_arr[j].y, input_arr[j].z, input_arr[j].s, input_arr[j].e
+            room.num_rooms += 1
         z += 1
         j += 1
-
     return (input)
 
 def setup():
@@ -59,6 +61,7 @@ def setup():
 class room:
     
     num_ants = 0
+    num_rooms = 0
     
     def __init__(self, name, x, y, z, s, e):
         self.name = name
